@@ -20,6 +20,8 @@ struct DependencyInjector {
 
     static var dependencies: Resolver = DependencyFactory()
 
+    private init() {}
+
 }
 
 class BaseContainer {
