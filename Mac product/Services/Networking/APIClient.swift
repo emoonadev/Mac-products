@@ -9,8 +9,10 @@
 import Foundation
 import SwiftCoroutine
 
-protocol APIClientService {
+typealias Future = CoFuture
 
+protocol APIClientService {
+    func perform<T: Codable>(_ route: APIConstants.Route) -> Future<T>
 }
 
 class APIClient: APIClientService {
@@ -24,8 +26,8 @@ class APIClient: APIClientService {
 
 extension APIClient {
 
-    func perform<T: Codable>(_ route: APIConstants.Route) -> CoFuture<T> {
-        return CoFuture { promise in
+    func perform<T: Codable>(_ route: APIConstants.Route) -> Future<T> {
+        Future { promise in
             networking.request(url: route.request.url, method: route.request.method) { (result: Result<T, Error>) in
                 switch result {
                     case .success(let obj):

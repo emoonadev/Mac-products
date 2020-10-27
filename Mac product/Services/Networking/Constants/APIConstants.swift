@@ -10,7 +10,7 @@ import Foundation
 
 class APIConstants {
 
-    static let baseURL = URL(string: "https://virtserver.swaggerhub.com/Hero-Apps/In-Case/1.0.0/")!
+    static let baseURL = URL(string: "https://raw.githubusercontent.com/pbakondy/ios-device-list/master/")!
 
     struct Request {
         var url: URL
@@ -27,7 +27,7 @@ class APIConstants {
 
             switch self {
                 case .getProducts:
-                    request.url = request.url.appendingPathComponent("login")
+                    request.url = request.url.appendingPathComponent("iphone.json")
                     request.method = .get
             }
 

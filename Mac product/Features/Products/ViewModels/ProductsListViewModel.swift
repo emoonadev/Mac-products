@@ -10,8 +10,27 @@ import Foundation
 
 
 class ProductListViewModel: ObservableObject {
-	
-	@Published var products: [Int] = []
-	
-	
+
+	private let productRepository: ProductRepositoryService
+
+	@Published var products: [Product] = []
+
+
+	init(productRepository: ProductRepositoryService) {
+		self.productRepository = productRepository
+	}
+
+}
+
+
+// MARK: - Networking
+
+extension ProductListViewModel {
+
+	func getProducts() {
+		async {
+			self.products = try! self.productRepository.getAll().await()
+		}
+	}
+
 }

@@ -9,14 +9,17 @@
 import SwiftUI
 
 struct ProductsListView: View {
-	
-	@EnvironmentObservedResolve var viewModel: ProductListViewModel
-	
-	
+
+    @EnvironmentObservedResolve var viewModel: ProductListViewModel
+
+
     var body: some View {
-        Text("Hello, World!")
+        List(viewModel.products) { ProductCell(product: $0) }
+                .onAppear {
+                    self.viewModel.getProducts()
+                }
     }
-	
+
 }
 
 struct ProductsListView_Previews: PreviewProvider {

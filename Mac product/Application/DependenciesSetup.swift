@@ -21,10 +21,11 @@ extension DependencyFactory {
     }
 
     private func registerRepositories() {
+        register(ProductRepositoryService.self, instanceType: .single) { r in r.autoResolveSingle(ProductRepository.init) }
     }
 
     private func registerViewModels() {
-        register { _ in ProductListViewModel() }
+        register { r in r.autoResolveSingle(ProductListViewModel.init) }
     }
 
 }
