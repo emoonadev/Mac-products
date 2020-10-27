@@ -30,12 +30,12 @@ extension Product {
     struct Model: Codable {
         let color: String
         let storage: String
-        let model: [String]
+        let models: [String]
 
         enum CodingKeys: String, CodingKey {
             case color = "Color"
             case storage = "Storage"
-            case model = "Model"
+            case models = "Model"
         }
     }
 
